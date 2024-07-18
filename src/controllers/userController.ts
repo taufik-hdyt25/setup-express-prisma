@@ -123,6 +123,7 @@ export const login = async (req: Request, res: Response) => {
       code: 201,
       status: "success",
       email: checkEmail.email,
+      name: checkEmail.name,
       message: "Login Success",
       token,
     });
@@ -146,6 +147,7 @@ export const profile = async (req: Request, res: Response) => {
       message: "success get profile",
       id: user.id,
       email: user.email,
+      name: user.name,
     });
 
     // const checkUser = await getUsersById()
