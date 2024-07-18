@@ -7,17 +7,17 @@ import {
   login,
   profile,
 } from "../controllers/userController";
-import jwtAuth from "../middlewares/jwtauth";
+import auth from "../middlewares/jwtauth";
 
 const routerUser = Router();
 
-routerUser.get("/users", getAllUsers);
+routerUser.get("/users", auth, getAllUsers);
 routerUser.get("/user", getUserQuery);
-routerUser.post("/users", addUser);
 routerUser.delete("/user/:id", deleteUserById);
 
 // Auth
+routerUser.post("/users", addUser);
 routerUser.post("/auth/login", login);
-routerUser.get("/auth/me", jwtAuth, profile);
+routerUser.get("/auth/me", auth, profile);
 
 export default routerUser;

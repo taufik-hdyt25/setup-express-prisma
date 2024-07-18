@@ -9,7 +9,10 @@ import {
 import * as bycript from "bcrypt";
 import * as jwt from "jsonwebtoken";
 
-export const getAllUsers = async (req: Request, res: Response) => {
+export const getAllUsers = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const users = await getUsers();
     return res.status(200).json({
@@ -51,7 +54,10 @@ export const getUserQuery = async (req: Request, res: Response) => {
   }
 };
 
-export const addUser = async (req: Request, res: Response) => {
+export const addUser = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   const { name, email, password } = req.body;
   try {
     // cek email jika ada
@@ -73,7 +79,10 @@ export const addUser = async (req: Request, res: Response) => {
   }
 };
 
-export const deleteUserById = async (req: Request, res: Response) => {
+export const deleteUserById = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const { id } = req.params;
     const idParam = parseInt(id);
@@ -94,7 +103,7 @@ export const deleteUserById = async (req: Request, res: Response) => {
   }
 };
 
-export const login = async (req: Request, res: Response) => {
+export const login = async (req: Request, res: Response): Promise<Response> => {
   try {
     const { email, password } = req.body;
     if (!email)
@@ -134,7 +143,10 @@ export const login = async (req: Request, res: Response) => {
   }
 };
 
-export const profile = async (req: Request, res: Response) => {
+export const profile = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   try {
     const loginSession = res.locals.auth;
     const user = await getUsersById(loginSession.id);
